@@ -43,13 +43,13 @@ class _HomePageState extends State<HomePage>
               child: Icon(Icons.camera_alt),
             ),
             Tab(
-              child: Text("Chats"),
+              child: Text("CHATS"),
             ),
             Tab(
-              child: Text("Status"),
+              child: Text("STATUS"),
             ),
             Tab(
-              child: Text("Call"),
+              child: Text("CALL"),
             ),
           ],
         ),

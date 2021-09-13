@@ -1,6 +1,8 @@
 import 'package:clone/models/chat_model.dart';
 import 'package:flutter/material.dart';
 
+import 'message_screen.dart';
+
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({Key? key}) : super(key: key);
 
@@ -14,45 +16,51 @@ class _ChatsScreenState extends State<ChatsScreen> {
     return ListView.builder(
       itemCount: dummyData.length,
       itemBuilder: (context, index) {
-        return Column(
-          children: [
-            const Divider(
-              height: 5,
-            ),
-            ListTile(
-              leading: CircleAvatar(
-                foregroundColor: Theme.of(context).primaryColor,
-                backgroundColor: Colors.grey,
-                backgroundImage: NetworkImage(dummyData[index].imageUrl),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MessageScreen(index)));
+          },
+          child: Column(
+            children: [
+              const Divider(
+                height: 5,
               ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    dummyData[index].name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
+              ListTile(
+                leading: CircleAvatar(
+                  foregroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.grey,
+                  backgroundImage: NetworkImage(dummyData[index].imageUrl),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      dummyData[index].name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
                     ),
-                  ),
-                  Text(
-                    dummyData[index].time,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 13,
+                    Text(
+                      dummyData[index].time,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 13,
+                      ),
                     ),
+                  ],
+                ),
+                subtitle: Container(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text(
+                    dummyData[index].message,
+                    style: const TextStyle(color: Colors.grey, fontSize: 15),
                   ),
-                ],
-              ),
-              subtitle: Container(
-                padding: EdgeInsets.only(top: 5),
-                child: Text(
-                  dummyData[index].message,
-                  style: const TextStyle(color: Colors.grey, fontSize: 15),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
